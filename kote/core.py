@@ -274,7 +274,7 @@ class KoteCore:
 
     async def _receive_message(self, reader, writer, destination):
         with suppress(asyncio.CancelledError):
-            destination = i2plib.Destination(destination.decode())
+            destination = i2plib.Destination(destination.decode().rstrip())
             name = self.addressbook.get_name(destination.base32)
             if not name and self.ignore_unauthorized:
                 writer.close()
